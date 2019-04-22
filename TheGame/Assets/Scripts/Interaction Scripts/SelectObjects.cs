@@ -9,12 +9,13 @@ public class SelectObjects : MonoBehaviour {
     [HideInInspector] public bool clickTime; //A bool that is set and unset so that the clicking functions don't occur every frame.
     [HideInInspector] public bool holdingSelf; //True when the player is holding themselves. I might move this later. 
     [HideInInspector] public TalkToObject talkToObject;
+    [HideInInspector] public bool isTalking; //True when a conversation is ongoing.
 
     void Start () //Grabs necessary references.
     {
-        cam = this.GetComponent<Camera>();
         scriptManager = GameObject.FindWithTag("ScriptManager").GetComponent<ScriptManager>();
-	}
+        cam = scriptManager.GetComponentInChildren<Camera>();
+    }
 	
 	void Update () //Essentially, this fires a raycast on mouseclick: if it hits an object, if that object is Holdable, or the Player, you'll be able to move that object around with the HoldObjectMovement script. If that object is dialogue, you can talk to it.
     {
@@ -22,7 +23,7 @@ public class SelectObjects : MonoBehaviour {
         {
             StartCoroutine(clickTimer());
             RaycastHit2D hit = Physics2D.GetRayIntersection(cam.ScreenPointToRay(Input.mousePosition));
-            if (hit.transform.tag == "Player")
+            if (hit.transform.tag == "Player" && isTalking == false)
             {
                 scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
                 scriptManager.holdObjectMovement.HoldObject();
@@ -32,21 +33,27 @@ public class SelectObjects : MonoBehaviour {
             {
                 foreach (Transform child in hit.transform)
                 {
-                    if (child.tag == "Holdable")
+                    if (child.tag == "Holdable" && isTalking == false)
                     {
                         scriptManager.playerAnimator.StartHolding();
                         scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
                         scriptManager.holdObjectMovement.HoldObject();
-                    } else if (child.tag == "Dialogue")
+                    }
+                    else if (child.tag == "Dialogue" && holdingSelf == false)
                     {
-                        //ween
+                        talkToObject = hit.collider.GetComponent<TalkToObject>();
+                        talkToObject.StartTalking();
+                    }
+                    else if (child.tag == "DialogueContinue" && talkToObject.talkToCollider.enabled == true && holdingSelf == false) //These objects can continue existing dialogue, but not start new ones. (i.e. text boxes)
+                    {
+                        talkToObject.updateTextBox();
                     }
                 }
-            } 
+            }
         }
     }
 
-    IEnumerator clickTimer () //Sets ClickTime, then unsets it after half a second. 
+    public IEnumerator clickTimer () //Sets ClickTime, then unsets it after half a second. 
     {
         clickTime = true;
         yield return new WaitForSeconds(0.1f);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogueElement
 {
 
-    public enum Characters { DialogBox, TheGuy, TheShopkeeper};
+    public enum Characters {DialogBox};
     public Characters Character;
     public Sprite CharacterPic;
     public string DialogueText;
@@ -15,5 +15,7 @@ public class DialogueElement
     public GUIStyle DialogueTextStyle;
     public float TextPlayBackSpeed;
     public AudioClip PlayBackSoundFile;
+    public Vector3 textBoxLocation;
+    public bool isAboveCharacter;
 
 }

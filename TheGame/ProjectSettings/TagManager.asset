@@ -7,6 +7,9 @@ TagManager:
   - Holdable
   - ScriptManager
   - Dialogue
+  - FlashingTarget
+  - Textbox
+  - DialogueContinue
   layers:
   - Default
   - TransparentFX
