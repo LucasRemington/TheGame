@@ -87,6 +87,7 @@ MonoBehaviour:
     TextPlayBackSpeed: 0
     PlayBackSoundFile: {fileID: 0}
     textBoxLocation: {x: -9.5, y: 10.96, z: 0}
+    isAboveSelf: 1
     isAboveCharacter: 0
   - Character: 0
     CharacterPic: {fileID: 0}
@@ -163,6 +164,7 @@ MonoBehaviour:
     TextPlayBackSpeed: 0
     PlayBackSoundFile: {fileID: 0}
     textBoxLocation: {x: -9.5, y: 10.96, z: 0}
+    isAboveSelf: 0
     isAboveCharacter: 1
   - Character: 0
     CharacterPic: {fileID: 0}
@@ -239,4 +241,5 @@ MonoBehaviour:
     TextPlayBackSpeed: 0
     PlayBackSoundFile: {fileID: 0}
     textBoxLocation: {x: -9.5, y: 10.96, z: 0}
+    isAboveSelf: 0
     isAboveCharacter: 0

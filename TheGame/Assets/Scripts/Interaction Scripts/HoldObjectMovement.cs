@@ -15,6 +15,7 @@ public class HoldObjectMovement : MonoBehaviour {
     [HideInInspector] public float checkX; //These two variables are 'approximations' of how close the object is to it's target: once it's close enouh, it'll stop.
     [HideInInspector] public float checkY;
     public GameObject flashingTarget; //A prefab instantiated to show the target location.
+    public int initialLayerName;
 
     void Start ()
     {
@@ -82,6 +83,8 @@ public class HoldObjectMovement : MonoBehaviour {
 
     public void HoldObject() //Called when an object is first held: grabs the appropriate component, sets gravity to nothing, and sets the objects animator to trigger.
     {
+        initialLayerName = heldObject.layer; //takes initial name of object layer
+        heldObject.layer = LayerMask.NameToLayer("IgnoreTerrain"); //changes layer of held object to ignore terrain
         heldObjectRB2D = heldObject.GetComponent<Rigidbody2D>();
         heldObjectAnim = heldObject.GetComponent<Animator>();
         heldObjectSpriteRenderer = heldObject.GetComponent<SpriteRenderer>();
@@ -95,6 +98,7 @@ public class HoldObjectMovement : MonoBehaviour {
 
     public void DropHeldObject() //'Resets' a grabbed object, dumping all references. 
     {
+        heldObject.layer = initialLayerName;
         unfreezeHeldObject();
         heldObjectRB2D.gravityScale = 1;
         heldObjectAnim.SetBool("Flying", false);

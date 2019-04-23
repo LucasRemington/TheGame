@@ -15,42 +15,42 @@ public class SelectObjects : MonoBehaviour {
     {
         scriptManager = GameObject.FindWithTag("ScriptManager").GetComponent<ScriptManager>();
         cam = scriptManager.GetComponentInChildren<Camera>();
+        StartCoroutine(castRay());
     }
 	
-	void Update () //Essentially, this fires a raycast on mouseclick: if it hits an object, if that object is Holdable, or the Player, you'll be able to move that object around with the HoldObjectMovement script. If that object is dialogue, you can talk to it.
+	IEnumerator castRay () //Essentially, this fires a raycast on mouseclick: if it hits an object, if that object is Holdable, or the Player, you'll be able to move that object around with the HoldObjectMovement script. If that object is dialogue, you can talk to it.
     {
-        if (Input.GetButton("Fire1") && clickTime == false)
+        yield return new WaitUntil(() => Input.GetButton("Fire1") && clickTime == false && scriptManager.playerAnimator.canMove == true);
+        StartCoroutine(clickTimer());
+        RaycastHit2D hit = Physics2D.GetRayIntersection(cam.ScreenPointToRay(Input.mousePosition));
+        StartCoroutine(castRay());
+        if (hit.transform.tag == "Player" && isTalking == false)
         {
-            StartCoroutine(clickTimer());
-            RaycastHit2D hit = Physics2D.GetRayIntersection(cam.ScreenPointToRay(Input.mousePosition));
-            if (hit.transform.tag == "Player" && isTalking == false)
+            scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
+            scriptManager.holdObjectMovement.HoldObject();
+            holdingSelf = true;
+        }
+        else if (hit.collider != null)
+        {
+            foreach (Transform child in hit.transform)
             {
-                scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
-                scriptManager.holdObjectMovement.HoldObject();
-                holdingSelf = true;
-            }
-            else if (hit.collider != null)
-            {
-                foreach (Transform child in hit.transform)
+                if (child.tag == "Holdable" && isTalking == false && holdingSelf == false)
                 {
-                    if (child.tag == "Holdable" && isTalking == false)
-                    {
-                        scriptManager.playerAnimator.StartHolding();
-                        scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
-                        scriptManager.holdObjectMovement.HoldObject();
-                    }
-                    else if (child.tag == "Dialogue" && holdingSelf == false)
-                    {
-                        talkToObject = hit.collider.GetComponent<TalkToObject>();
-                        talkToObject.StartTalking();
-                    }
-                    else if (child.tag == "DialogueContinue" && talkToObject.talkToCollider.enabled == true && holdingSelf == false) //These objects can continue existing dialogue, but not start new ones. (i.e. text boxes)
-                    {
-                        talkToObject.updateTextBox();
-                    }
+                    scriptManager.playerAnimator.StartHolding();
+                    scriptManager.holdObjectMovement.heldObject = hit.transform.gameObject;
+                    scriptManager.holdObjectMovement.HoldObject();
+                }
+                else if (child.tag == "Dialogue" && holdingSelf == false)
+                {
+                    talkToObject = hit.collider.GetComponent<TalkToObject>();
+                    talkToObject.StartTalking();
+                }
+                else if (child.tag == "DialogueContinue" && talkToObject.talkToCollider.enabled == true && holdingSelf == false) //These objects can continue existing dialogue, but not start new ones. (i.e. text boxes)
+                {
+                    talkToObject.updateTextBox();
+                }
                 }
             }
-        }
     }
 
     public IEnumerator clickTimer () //Sets ClickTime, then unsets it after half a second. 

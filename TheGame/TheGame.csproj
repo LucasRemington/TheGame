@@ -364,11 +364,14 @@
     <Compile Include="Assets\Scripts\Interaction Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Interaction Scripts\DialogueElement.cs" />
     <Compile Include="Assets\Scripts\Interaction Scripts\HoldObjectMovement.cs" />
+    <Compile Include="Assets\Scripts\Interaction Scripts\PlayerDetection.cs" />
     <Compile Include="Assets\Scripts\Interaction Scripts\SelectObjects.cs" />
     <Compile Include="Assets\Scripts\Interaction Scripts\TalkToObject.cs" />
     <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ScriptManager.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FlashingTargetDestroy.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\FloatUpAndDown.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\ObjectMovement.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\TextBox.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimator.cs" />
   </ItemGroup>

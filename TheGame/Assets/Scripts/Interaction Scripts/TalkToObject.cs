@@ -12,36 +12,47 @@ public class TalkToObject : MonoBehaviour {
     [HideInInspector] public GameObject textBox; //The 'Container' for the canvas, text box image, and text.
     public GameObject textBoxPrefab; //The prefab the container is pulled from.
     [HideInInspector] public Animator textBoxAnim; //The animator on the text box image.
+    [HideInInspector] public Animator selfAnim; //The animator on the object with the script.
     [HideInInspector] public RectTransform textBoxRT; //The RectTransform of the text box.
     [HideInInspector] public int currentDialogue = 0; //This variable keeps track of which dialogue we're pulling from when talking. (Again, the 'conversation.')
     [HideInInspector] public int currentDialogueItem = 0; //This keeps track of what specific part of the text the conversation is actually on.
     private string animateString;
     private bool cantPresstoProceed;
     private bool animatingText;
+    public bool playerNear;
     [HideInInspector] public Collider2D talkToCollider;
+    public float textBoxFloatDistance; //distance text box floats above object when AboveSelf is set in the dialogue element
 
-    public void Start()
+    public void Awake()
     {
         scriptManager = GameObject.FindWithTag("ScriptManager").GetComponent<ScriptManager>(); //Gets a reference to ScriptManager based on tag.
+        selfAnim = GetComponent<Animator>();
         talkToCollider = this.GetComponent<Collider2D>();
     }
 
     public void StartTalking () //Called from SelectObject. 
     {
-        if (scriptManager.selectObjects.isTalking == false) //Instantiates the text box and then grabs the appropriate references. Also begins necessary coroutines.
+        if (scriptManager.playerAnimator.canMove == true && playerNear == true)
         {
-            Instantiate(textBoxPrefab);
-            textBox = GameObject.FindWithTag("Textbox");
-            text = textBox.transform.Find("Canvas").transform.Find("Textbox").transform.Find("Text").GetComponent<Text>();
-            textBoxAnim = textBox.transform.Find("Canvas").transform.Find("Textbox").GetComponent<Animator>();
-            textBoxRT = textBox.transform.Find("Canvas").transform.Find("Textbox").GetComponent<RectTransform>();
-            locateTextBox();
-            StartCoroutine(PressToProceed());
-            scriptManager.selectObjects.isTalking = true;
-        }
-        else
-        {
-           updateTextBox(); //If the conversation has already started, this just calls updatetextbox.
+            if (scriptManager.selectObjects.isTalking == false) //Instantiates the text box and then grabs the appropriate references. Also begins necessary coroutines.
+            {
+                Instantiate(textBoxPrefab);
+                textBox = GameObject.FindWithTag("Textbox");
+                text = textBox.transform.Find("Canvas").transform.Find("Textbox").transform.Find("Text").GetComponent<Text>();
+                textBoxAnim = textBox.transform.Find("Canvas").transform.Find("Textbox").GetComponent<Animator>();
+                textBoxRT = textBox.transform.Find("Canvas").transform.Find("Textbox").GetComponent<RectTransform>();
+                locateTextBox();
+                StartCoroutine(PressToProceed());
+                scriptManager.selectObjects.isTalking = true;
+                if (selfAnim != null)
+                {
+                    selfAnim.SetBool("Talking", true);
+                }
+            }
+            else
+            {
+                updateTextBox(); //If the conversation has already started, this just calls updatetextbox.
+            }
         }
     }
 
@@ -62,7 +73,7 @@ public class TalkToObject : MonoBehaviour {
             }
             StopCoroutine(PressToProceed());
             StartCoroutine(turnOnCollider());
-            scriptManager.selectObjects.isTalking = false;
+            StartCoroutine(waitToStopTalking());
         }
         else //If there's still more text to go, the script pulls the necessary info from the dialogue element, and calls locatetextbox to set the appropriate location.
         {
@@ -78,13 +89,27 @@ public class TalkToObject : MonoBehaviour {
 
     public void locateTextBox () //Sets the text box above the player, or in the specified location.
     {
-        if (dialogue[currentDialogue].DialogItems[currentDialogueItem].isAboveCharacter == true && textBoxRT != null)
+        if (dialogue[currentDialogue].DialogItems[currentDialogueItem].isAboveSelf == true && textBoxRT != null)
+        {
+            textBoxRT.SetPositionAndRotation(new Vector3(this.transform.position.x, this.transform.position.y + textBoxFloatDistance, 0), Quaternion.identity);
+        }
+        else if (dialogue[currentDialogue].DialogItems[currentDialogueItem].isAboveCharacter == true && textBoxRT != null)
         {
             textBoxRT.SetPositionAndRotation(new Vector3 (scriptManager.playerAnimator.playerPosition.x, scriptManager.playerAnimator.playerPosition.y +5 , 0), Quaternion.identity);
         }
         else if (textBoxRT != null)
         {
             textBoxRT.SetPositionAndRotation(dialogue[currentDialogue].DialogItems[currentDialogueItem].textBoxLocation, Quaternion.identity);
+        }
+    }
+
+    IEnumerator waitToStopTalking ()
+    {
+        yield return new WaitForSeconds(0.1f);
+        scriptManager.selectObjects.isTalking = false;
+        if (selfAnim != null)
+        {
+            selfAnim.SetBool("Talking", false);
         }
     }
 

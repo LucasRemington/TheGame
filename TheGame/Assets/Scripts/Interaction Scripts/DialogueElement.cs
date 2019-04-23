@@ -16,6 +16,7 @@ public class DialogueElement
     public float TextPlayBackSpeed;
     public AudioClip PlayBackSoundFile;
     public Vector3 textBoxLocation;
+    public bool isAboveSelf;
     public bool isAboveCharacter;
 
 }
