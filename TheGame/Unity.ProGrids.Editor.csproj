@@ -286,8 +286,32 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity_2018.2.21f1/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity_2018.2.21f1/Unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartBindings">
+      <HintPath>Assets/Packages/Smart/Bindings/SmartBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartBindingsEditor">
+      <HintPath>Assets/Packages/Smart/Bindings/Editor/SmartBindingsEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartComponents">
+      <HintPath>Assets/Packages/Smart/Components/SmartComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartComponentsEditor">
+      <HintPath>Assets/Packages/Smart/Components/Editor/SmartComponentsEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartCore">
+      <HintPath>Assets/Packages/Smart/Core/SmartCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartCoreEditor">
+      <HintPath>Assets/Packages/Smart/Core/Editor/SmartCoreEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartExtensionsEditor">
+      <HintPath>Assets/Packages/Smart/Extensions/Editor/SmartExtensionsEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/lreming1/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -303,27 +327,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/lreming1/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartComponents">
-      <HintPath>Assets/Packages/Smart/Components/SmartComponents.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartCore">
-      <HintPath>Assets/Packages/Smart/Core/SmartCore.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartExtensionsEditor">
-      <HintPath>Assets/Packages/Smart/Extensions/Editor/SmartExtensionsEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartBindings">
-      <HintPath>Assets/Packages/Smart/Bindings/SmartBindings.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartCoreEditor">
-      <HintPath>Assets/Packages/Smart/Core/Editor/SmartCoreEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartBindingsEditor">
-      <HintPath>Assets/Packages/Smart/Bindings/Editor/SmartBindingsEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartComponentsEditor">
-      <HintPath>Assets/Packages/Smart/Components/Editor/SmartComponentsEditor.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity_2018.2.21f1\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\mscorlib.dll</HintPath>

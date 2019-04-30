@@ -17,7 +17,7 @@ public class ObjectMovement : MonoBehaviour {
     public bool staticIfStationary;
     public float speed;
     public bool canMove; //True when the object can move around.
-    [HideInInspector] public float checkX; //These two variables are 'approximations' of how close the object is to it's target: once it's close enouh, it'll stop.
+    public float checkX; //These two variables are 'approximations' of how close the object is to it's target: once it's close enouh, it'll stop.
     [HideInInspector] public float checkY;
     public int initialLayer;
     public float xVelocityCap; //Variable that 'caps' velocity once it goes over a certain threshhold: currently only applies to x axis. 
@@ -72,7 +72,10 @@ public class ObjectMovement : MonoBehaviour {
         {
             objSprRnd.flipX = false;
         }
-        objAnim.SetBool("Walking", true);
+        if (objAnim != null)
+        {
+            objAnim.SetBool("Walking", true);
+        }
         checkXY();
         if (checkX < 1f && checkY < 1f || xMoveOnly == true && checkX < 1f)
         {
@@ -81,7 +84,10 @@ public class ObjectMovement : MonoBehaviour {
                 if (staticIfStationary == true)
                 {
                     FreezeMovement();
-                    objAnim.SetBool("Walking", false);
+                    if (objAnim != null)
+                    {
+                        objAnim.SetBool("Walking", false);
+                    }
                 }
             }
             else

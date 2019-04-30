@@ -295,8 +295,32 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity_2018.2.21f1/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity_2018.2.21f1/Unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartBindings">
+      <HintPath>Assets/Packages/Smart/Bindings/SmartBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartBindingsEditor">
+      <HintPath>Assets/Packages/Smart/Bindings/Editor/SmartBindingsEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartComponents">
+      <HintPath>Assets/Packages/Smart/Components/SmartComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartComponentsEditor">
+      <HintPath>Assets/Packages/Smart/Components/Editor/SmartComponentsEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartCore">
+      <HintPath>Assets/Packages/Smart/Core/SmartCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartCoreEditor">
+      <HintPath>Assets/Packages/Smart/Core/Editor/SmartCoreEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartExtensionsEditor">
+      <HintPath>Assets/Packages/Smart/Extensions/Editor/SmartExtensionsEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/lreming1/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -312,27 +336,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/lreming1/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartComponents">
-      <HintPath>Assets/Packages/Smart/Components/SmartComponents.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartCore">
-      <HintPath>Assets/Packages/Smart/Core/SmartCore.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartExtensionsEditor">
-      <HintPath>Assets/Packages/Smart/Extensions/Editor/SmartExtensionsEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartBindings">
-      <HintPath>Assets/Packages/Smart/Bindings/SmartBindings.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartCoreEditor">
-      <HintPath>Assets/Packages/Smart/Core/Editor/SmartCoreEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartBindingsEditor">
-      <HintPath>Assets/Packages/Smart/Bindings/Editor/SmartBindingsEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="SmartComponentsEditor">
-      <HintPath>Assets/Packages/Smart/Components/Editor/SmartComponentsEditor.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity_2018.2.21f1\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\mscorlib.dll</HintPath>
@@ -367,6 +370,18 @@
       <Project>{2A06C275-FF04-4640-6400-1FD26CC97065}</Project>
       <Name>TheGame</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
+      <Project>{45C0FE08-C1F1-7BED-D3D6-F2DFF958F513}</Project>
+      <Name>Unity.2D.PixelPerfect.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProGrids.csproj">
+      <Project>{23450A3B-DD10-D6DE-896F-2D4F8941F4B4}</Project>
+      <Name>Unity.ProGrids</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProGrids.Editor.csproj">
+      <Project>{E913EAA8-A9B5-A283-DA3E-82F1B9EE0798}</Project>
+      <Name>Unity.ProGrids.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.StandardEvents.csproj">
       <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
       <Name>UnityEditor.StandardEvents</Name>
@@ -379,26 +394,6 @@
       <Project>{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}</Project>
       <Name>Unity.PackageManagerUI.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
-      <Project>{45C0FE08-C1F1-7BED-D3D6-F2DFF958F513}</Project>
-      <Name>Unity.2D.PixelPerfect.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.PixelPerfect.csproj">
-      <Project>{F84FF180-3644-AB59-F1BE-8FE53F083B3D}</Project>
-      <Name>Unity.2D.PixelPerfect</Name>
-    </ProjectReference>
-    <ProjectReference Include="Cinemachine.csproj">
-      <Project>{D9EEBEDB-DFC3-5129-AB48-409427AE8119}</Project>
-      <Name>Cinemachine</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
-      <Project>{E4396B10-1675-7219-C2C9-4057D50DD6CC}</Project>
-      <Name>com.unity.cinemachine.editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
       <Project>{CBEC4DCB-1B2B-E03B-0387-393C59967E8B}</Project>
       <Name>Unity.Postprocessing.Editor</Name>
@@ -407,13 +402,21 @@
       <Project>{49FCAFB7-7D0A-B3F6-2171-B4248A94EC21}</Project>
       <Name>Unity.Postprocessing.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ProGrids.csproj">
-      <Project>{23450A3B-DD10-D6DE-896F-2D4F8941F4B4}</Project>
-      <Name>Unity.ProGrids</Name>
+    <ProjectReference Include="Unity.2D.PixelPerfect.csproj">
+      <Project>{F84FF180-3644-AB59-F1BE-8FE53F083B3D}</Project>
+      <Name>Unity.2D.PixelPerfect</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.ProGrids.Editor.csproj">
-      <Project>{E913EAA8-A9B5-A283-DA3E-82F1B9EE0798}</Project>
-      <Name>Unity.ProGrids.Editor</Name>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{D9EEBEDB-DFC3-5129-AB48-409427AE8119}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{E4396B10-1675-7219-C2C9-4057D50DD6CC}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

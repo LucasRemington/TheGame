@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114618805097089202}
   - component: {fileID: 70401160678276070}
   m_Layer: 10
-  m_Name: TheBoss_0
+  m_Name: Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2b36f309cea5cec4cae31ddd145111af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

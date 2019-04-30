@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: HighPriestess
+  m_Controller: {fileID: 9100000, guid: 1a60f0fd95b7f3645954aa22a3ec3814, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 99f346906e4d4164aa9918fb979ae32b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ff100b8ead0b9f443a41e6b53978518d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6ae3c419ec75314468662064b592b253, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0e76d8d55ae5d14419a0557f69003ac7, type: 2}
