@@ -30,9 +30,9 @@ public class TalkToObject : MonoBehaviour {
         talkToCollider = this.GetComponent<Collider2D>();
     }
 
-    public void StartTalking () //Called from SelectObject. 
+    public void StartTalking (bool calledFromScript) //Called from SelectObject. Bool is true if called from script./
     {
-        if (scriptManager.playerAnimator.canMove == true && playerNear == true)
+        if (scriptManager.playerAnimator.canMove == true && playerNear == true || calledFromScript == true)
         {
             if (scriptManager.selectObjects.isTalking == false) //Instantiates the text box and then grabs the appropriate references. Also begins necessary coroutines.
             {
@@ -44,7 +44,7 @@ public class TalkToObject : MonoBehaviour {
                 locateTextBox();
                 StartCoroutine(PressToProceed());
                 scriptManager.selectObjects.isTalking = true;
-                if (selfAnim != null)
+                if (selfAnim != null && selfAnim.GetBool("Talking"))
                 {
                     selfAnim.SetBool("Talking", true);
                 }

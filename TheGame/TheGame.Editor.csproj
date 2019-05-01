@@ -370,6 +370,10 @@
       <Project>{2A06C275-FF04-4640-6400-1FD26CC97065}</Project>
       <Name>TheGame</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{D9EEBEDB-DFC3-5129-AB48-409427AE8119}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
       <Project>{45C0FE08-C1F1-7BED-D3D6-F2DFF958F513}</Project>
       <Name>Unity.2D.PixelPerfect.Editor</Name>
@@ -406,17 +410,13 @@
       <Project>{F84FF180-3644-AB59-F1BE-8FE53F083B3D}</Project>
       <Name>Unity.2D.PixelPerfect</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="Cinemachine.csproj">
-      <Project>{D9EEBEDB-DFC3-5129-AB48-409427AE8119}</Project>
-      <Name>Cinemachine</Name>
-    </ProjectReference>
     <ProjectReference Include="com.unity.cinemachine.editor.csproj">
       <Project>{E4396B10-1675-7219-C2C9-4057D50DD6CC}</Project>
       <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
+      <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ public class SelectObjects : MonoBehaviour {
     [HideInInspector] public ScriptManager scriptManager; //A script that holds all the other scripts, for easy reference.
     [HideInInspector] public bool clickTime; //A bool that is set and unset so that the clicking functions don't occur every frame.
     [HideInInspector] public bool holdingSelf; //True when the player is holding themselves. I might move this later. 
-    [HideInInspector] public TalkToObject talkToObject;
+     public TalkToObject talkToObject; // the current dialogue script being referenced
     [HideInInspector] public bool isTalking; //True when a conversation is ongoing.
 
     void Start () //Grabs necessary references.
@@ -43,7 +43,7 @@ public class SelectObjects : MonoBehaviour {
                 else if (child.tag == "Dialogue" && holdingSelf == false)
                 {
                     talkToObject = hit.collider.GetComponent<TalkToObject>();
-                    talkToObject.StartTalking();
+                    talkToObject.StartTalking(false);
                 }
                 else if (child.tag == "DialogueContinue" && talkToObject.talkToCollider.enabled == true && holdingSelf == false) //These objects can continue existing dialogue, but not start new ones. (i.e. text boxes)
                 {

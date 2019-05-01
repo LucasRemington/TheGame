@@ -15,12 +15,15 @@ public class ObjectMovement : MonoBehaviour {
     public bool xMoveOnly;
     public bool loopPatrol;
     public bool staticIfStationary;
+    public bool flagAtDestination; //true when reaching the target point sets a flag for another script. 
+    [HideInInspector] public bool movementFlag; // this is the flag set when the destination is reached.
     public float speed;
     public bool canMove; //True when the object can move around.
     public float checkX; //These two variables are 'approximations' of how close the object is to it's target: once it's close enouh, it'll stop.
     [HideInInspector] public float checkY;
-    public int initialLayer;
+    [HideInInspector] public int initialLayer;
     public float xVelocityCap; //Variable that 'caps' velocity once it goes over a certain threshhold: currently only applies to x axis. 
+    public float xVelocityMin;
 
     void Awake()
     {
@@ -56,6 +59,7 @@ public class ObjectMovement : MonoBehaviour {
         {
             objRB2D.AddForce((moveToLocation[currentTarget].transform.position - this.transform.position) * speed);
         }
+
         if (objRB2D.velocity.x > xVelocityCap && scriptManager.holdObjectMovement.heldObject != this.gameObject) // This caps the velocity, unless the player is holding the object.
         {
             objRB2D.velocity = new Vector2(xVelocityCap, objRB2D.velocity.y);
@@ -64,23 +68,39 @@ public class ObjectMovement : MonoBehaviour {
         {
             objRB2D.velocity = new Vector2(-xVelocityCap, objRB2D.velocity.y);
         }
-        if (objRB2D.velocity.x < 0)
+
+        if (Mathf.Abs(objRB2D.velocity.x) < xVelocityMin && scriptManager.holdObjectMovement.heldObject != this.gameObject)
+        {
+            if (objRB2D.velocity.x > 0)
+            {
+                objRB2D.velocity = new Vector2(xVelocityMin, objRB2D.velocity.y);
+            }
+            else if (objRB2D.velocity.x < 0)
+            {
+                objRB2D.velocity = new Vector2(-xVelocityMin, objRB2D.velocity.y);
+            }
+        }
+
+        if (objRB2D.velocity.x < 0 && objSprRnd != null) //Flips sprite as necessary
         {
             objSprRnd.flipX = true;
         }
-        else if (objRB2D.velocity.x > 0)
+        else if (objRB2D.velocity.x > 0 && objSprRnd != null)
         {
             objSprRnd.flipX = false;
         }
-        if (objAnim != null)
+
+        if (objAnim != null) //Sets appropriate bool, if any
         {
             objAnim.SetBool("Walking", true);
         }
         checkXY();
-        if (checkX < 1f && checkY < 1f || xMoveOnly == true && checkX < 1f)
+        if (checkX < 1f && checkY < 1f || xMoveOnly == true && checkX < 1f) //This portion of the function should trigger when it needs to stop/loop
         {
+            Debug.Log("Done moving");
             if (multipleTargetLocations == false)
             {
+                Debug.Log("Done moving with one target");
                 if (staticIfStationary == true)
                 {
                     FreezeMovement();
@@ -88,6 +108,10 @@ public class ObjectMovement : MonoBehaviour {
                     {
                         objAnim.SetBool("Walking", false);
                     }
+                }
+                if (flagAtDestination == true)
+                {
+                    movementFlag = true;
                 }
             }
             else
@@ -128,7 +152,7 @@ public class ObjectMovement : MonoBehaviour {
         objRB2D.isKinematic = true;
     }
 
-    void checkXY() //This sets the approximate numbers that the location is judged against.
+    public void checkXY() //This sets the approximate numbers that the location is judged against.
     {
         checkX = Mathf.Abs(moveToLocation[currentTarget].transform.position.x - this.transform.position.x);
         checkY = Mathf.Abs(moveToLocation[currentTarget].transform.position.y - this.transform.position.y);
